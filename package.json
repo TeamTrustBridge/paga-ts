@@ -1,0 +1,38 @@
+{
+  "name": "paga-ts",
+  "version": "0.1.0",
+  "description": "Async TypeScript SDK for the Paga Engine API - payments, payouts, wallets and financial operations.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "paga",
+    "payout",
+    "payment",
+    "sdk",
+    "api"
+  ],
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamTrustBridge/paga-ts.git",
+    "directory": "."
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
