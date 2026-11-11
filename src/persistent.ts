@@ -8,7 +8,6 @@
 import {
   DELETE_PERSISTENT_ACCOUNT_HASH_FIELDS,
   GET_PERSISTENT_ACCOUNT_HASH_FIELDS,
-  HISTORY_HASH_FIELDS,
   REGISTER_PERSISTENT_ACCOUNT_HASH_FIELDS,
   UPDATE_PERSISTENT_ACCOUNT_HASH_FIELDS,
 } from "./auth.js";
@@ -124,19 +123,6 @@ export function PersistentAccountOperations<TBase extends Constructor<PagaTransp
       );
     }
 
-    /**
-     * Get the history of your payment requests.
-     *
-     * Operation: Collect API - Payment request history.
-     */
-    async getPaymentRequestHistory(args: { referenceNumber: string }): Promise<PagaResponse> {
-      return this.request<PagaResponse>(
-        "POST",
-        "/history",
-        { referenceNumber: args.referenceNumber },
-        { useHash: true, useBasic: true, hashFields: HISTORY_HASH_FIELDS, raiseOnError: false },
-      );
-    }
   }
 
   return PersistentMixin;

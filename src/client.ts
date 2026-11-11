@@ -1,26 +1,50 @@
 /**
  * The Paga Engine API client.
  *
- * Composes the operation mixins — checkout, actions, business accounts,
- * directory lookups, Direct Debit, persistent accounts and customers — onto
- * one client that owns the credentials and the HTTP plumbing.
+ * Composes one mixin per section of Paga's documentation:
+ *
+ * - `checkout` — Checkout
+ * - `collection` — Dynamic virtual account, Bank USSD, Paga wallet and USD
+ *   bank transfer
+ * - `refunds` — Refunds
+ * - `directDebit` — Direct Debit (Open Banking)
+ * - `moneyTransfer` — Money Transfer
+ * - `airtime` — Airtime and data
+ * - `billPayment` — Bill payment (VAS)
+ * - `status` — Check the transaction status
+ * - `business` — Your business account
+ * - `subsidiary` — Subsidiary accounts
+ * - `persistent` — Persistent payment accounts
+ * - `customer` — Customer registration and KYC
+ *
+ * The client owns the credentials and the HTTP plumbing.
  */
 
-import { ActionOperations } from "./actions.js";
+import { AirtimeOperations } from "./airtime.js";
 import { BasePagaClient, type PagaClientOptions } from "./base.js";
+import { BillPaymentOperations } from "./billPayment.js";
 import { BusinessOperations } from "./business.js";
 import { CheckoutOperations } from "./checkout.js";
+import { CollectionOperations } from "./collection.js";
 import { CustomerOperations } from "./customer.js";
 import { DirectDebitOperations } from "./directDebit.js";
-import { DirectoryOperations } from "./directory.js";
+import { MoneyTransferOperations } from "./moneyTransfer.js";
 import { PersistentAccountOperations } from "./persistent.js";
+import { RefundOperations } from "./refunds.js";
+import { StatusOperations } from "./status.js";
+import { SubsidiaryOperations } from "./subsidiary.js";
 
 const WithCheckout = CheckoutOperations(BasePagaClient);
-const WithActions = ActionOperations(WithCheckout);
-const WithBusiness = BusinessOperations(WithActions);
-const WithDirectory = DirectoryOperations(WithBusiness);
-const WithDirectDebit = DirectDebitOperations(WithDirectory);
-const WithPersistent = PersistentAccountOperations(WithDirectDebit);
+const WithCollection = CollectionOperations(WithCheckout);
+const WithRefunds = RefundOperations(WithCollection);
+const WithDirectDebit = DirectDebitOperations(WithRefunds);
+const WithMoneyTransfer = MoneyTransferOperations(WithDirectDebit);
+const WithAirtime = AirtimeOperations(WithMoneyTransfer);
+const WithBillPayment = BillPaymentOperations(WithAirtime);
+const WithStatus = StatusOperations(WithBillPayment);
+const WithBusiness = BusinessOperations(WithStatus);
+const WithSubsidiary = SubsidiaryOperations(WithBusiness);
+const WithPersistent = PersistentAccountOperations(WithSubsidiary);
 const WithCustomer = CustomerOperations(WithPersistent);
 
 /**
