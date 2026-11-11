@@ -1,7 +1,7 @@
 {
   "name": "paga-ts",
   "version": "0.1.0",
-  "description": "Async TypeScript SDK for the Paga Engine API - payments, payouts, wallets and financial operations.",
+  "description": "Unofficial async TypeScript SDK for the Paga Engine API - payments, payouts, wallets and financial operations.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
