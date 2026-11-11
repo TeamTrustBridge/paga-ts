@@ -43,12 +43,29 @@ organisation and track the same operation set.
 npm install paga-ts
 ```
 
+The package is published as `paga-ts`. To import it as `paga`, alias it in
+your `package.json`:
+
+```json
+{
+  "dependencies": {
+    "paga": "npm:paga-ts@^0.1.0"
+  }
+}
+```
+
+Then import it by the short name:
+
+```ts
+import { PagaClient } from "paga";
+```
+
 Requires Node.js 20+.
 
 ## Quick start
 
 ```ts
-import { PagaClient } from "paga-ts";
+import { PagaClient } from "paga";
 
 const client = new PagaClient(
   process.env.PAGA_PUBLIC_KEY!,
@@ -177,7 +194,7 @@ import {
   verifyPaymentCallback,
   verifyPersistentPaymentAccountCallback,
   verifySubsidiaryOperation,
-} from "paga-ts";
+} from "paga";
 
 // Checkout notification: hash = amount + timeStamp + paymentReference + hashKey
 const ok = await verifyCheckoutNotification(payload, receivedHash, hashKey);
@@ -217,7 +234,7 @@ if (webhook.event === "CAPTURED") { /* fulfil */ }
 ## Error handling
 
 ```ts
-import { PagaError, PagaAuthenticationError, PagaRateLimitError, PagaAPIError } from "paga-ts";
+import { PagaError, PagaAuthenticationError, PagaRateLimitError, PagaAPIError } from "paga";
 
 try {
   const payment = await client.createPayment({ ... });
@@ -237,7 +254,7 @@ try {
 A 200 response does not mean the money moved. Read the code in the body:
 
 ```ts
-import { classify, isUnknownOutcome, OperationOutcome } from "paga-ts";
+import { classify, isUnknownOutcome, OperationOutcome } from "paga";
 
 const status = await client.getTransactionStatus({ referenceNumber: "PAY-2026-0311" });
 if (classify(status) === OperationOutcome.SUCCESS) {
