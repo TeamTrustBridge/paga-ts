@@ -8,7 +8,8 @@
 > documentation and Paga's disagree, Paga's is right.
 
 > **Documentation:** <https://teamtrustbridge.github.io/paga-ts-docs/> — the full
-> TypeScript API reference, organised like Paga's own documentation.
+> TypeScript API reference, organised like Paga's own documentation. Source:
+> [TeamTrustBridge/paga-ts-docs](https://github.com/TeamTrustBridge/paga-ts-docs).
 
 `paga-ts` makes the Paga developer workflow easy for page and integration
 developers building checkout and payment experiences. It wraps the Paga Engine
