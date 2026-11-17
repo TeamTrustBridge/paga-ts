@@ -216,6 +216,10 @@ describe("direct debit", () => {
         "currency",
         "payer.phoneNumber",
         "payer.email",
+        "payee.accountNumber",
+        "payee.phoneNumber",
+        "payee.bankId",
+        "payee.bankAccountNumber",
       ]);
       assert.equal(stub.last.headers.hash, expected);
     } finally {
@@ -380,6 +384,10 @@ describe("checkout operations are unchanged", () => {
         "currency",
         "payer.phoneNumber",
         "payer.email",
+        "payee.accountNumber",
+        "payee.phoneNumber",
+        "payee.bankId",
+        "payee.bankAccountNumber",
       ]);
       assert.equal(stub.last.headers.hash, expected);
     } finally {

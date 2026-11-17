@@ -17,6 +17,7 @@
 import {
   COLLECT_BANKS_HASH_FIELDS,
   HISTORY_HASH_FIELDS,
+  PAYMENT_REQUEST_FULL_HASH_FIELDS,
   PAYMENT_REQUEST_HASH_FIELDS,
   PAYMENT_STATUS_HASH_FIELDS,
   USD_PAYMENT_STATUS_HASH_FIELDS,
@@ -115,7 +116,7 @@ export function CollectionOperations<TBase extends Constructor<PagaTransport>>(B
         {
           useHash: true,
           useBasic: true,
-          hashFields: args.hashFields ?? PAYMENT_REQUEST_HASH_FIELDS,
+          hashFields: args.hashFields ?? PAYMENT_REQUEST_FULL_HASH_FIELDS,
         },
       );
     }

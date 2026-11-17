@@ -11,7 +11,7 @@ import {
   CHARGE_MANDATE_STATUS_HASH_FIELDS,
   DISABLE_MANDATE_HASH_FIELDS,
   MANDATE_STATUS_HASH_FIELDS,
-  PAYMENT_REQUEST_HASH_FIELDS,
+  PAYMENT_REQUEST_FULL_HASH_FIELDS,
 } from "./auth.js";
 import type { Constructor, PagaTransport } from "./base.js";
 import type {
@@ -134,7 +134,7 @@ export function DirectDebitOperations<TBase extends Constructor<PagaTransport>>(
       return this.request<PagaResponse>("POST", "/paymentRequest", payload, {
         useHash: true,
         useBasic: true,
-        hashFields: PAYMENT_REQUEST_HASH_FIELDS,
+        hashFields: PAYMENT_REQUEST_FULL_HASH_FIELDS,
       });
     }
 

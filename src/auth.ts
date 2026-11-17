@@ -12,6 +12,18 @@ export const PAYMENT_REQUEST_HASH_FIELDS = [
   "payer.email",
 ];
 
+export const PAYMENT_REQUEST_FULL_HASH_FIELDS = [
+  "referenceNumber",
+  "amount",
+  "currency",
+  "payer.phoneNumber",
+  "payer.email",
+  "payee.accountNumber",
+  "payee.phoneNumber",
+  "payee.bankId",
+  "payee.bankAccountNumber",
+];
+
 export const BILL_PAYMENT_HASH_FIELDS = [
   "referenceNumber",
   "amount",

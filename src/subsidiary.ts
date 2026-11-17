@@ -188,7 +188,7 @@ export function SubsidiaryOperations<TBase extends Constructor<PagaTransport>>(B
           useBasic: true,
           baseUrl: this.baseUrl,
           hashFields: SUBSIDIARY_RETRIEVE_HASH_FIELDS,
-          params: { referenceNumber: args.referenceNumber },
+          params: { referenceNumber: args.referenceNumber, accountIdentifier: args.accountReference },
         },
       );
     }
@@ -256,7 +256,7 @@ export function SubsidiaryOperations<TBase extends Constructor<PagaTransport>>(B
           useBasic: true,
           baseUrl: this.baseUrl,
           hashFields: SUBSIDIARY_BALANCE_HASH_FIELDS,
-          params: { referenceNumber: args.referenceNumber },
+          params: { referenceNumber: args.referenceNumber, accountIdentifier: args.accountReference },
         },
       );
     }
@@ -292,6 +292,7 @@ export function SubsidiaryOperations<TBase extends Constructor<PagaTransport>>(B
           hashFields: SUBSIDIARY_HISTORY_HASH_FIELDS,
           params: {
             referenceNumber: args.referenceNumber,
+            accountIdentifier: args.accountReference,
             startDateTimeUTC: args.startDateTimeUTC,
             endDateTimeUTC: args.endDateTimeUTC,
             pageSize: args.pageSize ?? 20,

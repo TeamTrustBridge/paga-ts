@@ -30,18 +30,33 @@ export function PersistentAccountOperations<TBase extends Constructor<PagaTransp
       creditBankId: string;
       creditBankAccountNumber: string;
       callbackUrl: string;
+      accountName: string;
+      firstName: string;
+      lastName: string;
+      phoneNumber?: string;
+      email?: string;
+      fundingTransactionLimit?: number;
     }): Promise<PersistentPaymentAccountResponse> {
+      const payload: Record<string, unknown> = {
+        referenceNumber: args.referenceNumber,
+        accountReference: args.accountReference,
+        financialIdentificationNumber: args.financialIdentificationNumber,
+        creditBankId: args.creditBankId,
+        creditBankAccountNumber: args.creditBankAccountNumber,
+        callbackUrl: args.callbackUrl,
+        accountName: args.accountName,
+        firstName: args.firstName,
+        lastName: args.lastName,
+      };
+      if (args.phoneNumber !== undefined) payload.phoneNumber = args.phoneNumber;
+      if (args.email !== undefined) payload.email = args.email;
+      if (args.fundingTransactionLimit !== undefined) {
+        payload.fundingTransactionLimit = args.fundingTransactionLimit;
+      }
       return this.request<PersistentPaymentAccountResponse>(
         "POST",
         "/registerPersistentPaymentAccount",
-        {
-          referenceNumber: args.referenceNumber,
-          accountReference: args.accountReference,
-          financialIdentificationNumber: args.financialIdentificationNumber,
-          creditBankId: args.creditBankId,
-          creditBankAccountNumber: args.creditBankAccountNumber,
-          callbackUrl: args.callbackUrl,
-        },
+        payload,
         { useHash: true, useBasic: true, hashFields: REGISTER_PERSISTENT_ACCOUNT_HASH_FIELDS },
       );
     }
@@ -54,14 +69,17 @@ export function PersistentAccountOperations<TBase extends Constructor<PagaTransp
     async deletePersistentPaymentAccount(args: {
       referenceNumber: string;
       accountIdentifier: string;
+      reason?: string;
     }): Promise<PagaResponse> {
+      const payload: Record<string, unknown> = {
+        referenceNumber: args.referenceNumber,
+        accountIdentifier: args.accountIdentifier,
+      };
+      if (args.reason !== undefined) payload.reason = args.reason;
       return this.request<PagaResponse>(
         "POST",
         "/deletePersistentPaymentAccount",
-        {
-          referenceNumber: args.referenceNumber,
-          accountIdentifier: args.accountIdentifier,
-        },
+        payload,
         { useHash: true, useBasic: true, hashFields: DELETE_PERSISTENT_ACCOUNT_HASH_FIELDS },
       );
     }
@@ -81,6 +99,10 @@ export function PersistentAccountOperations<TBase extends Constructor<PagaTransp
       creditBankId?: string;
       creditBankAccountNumber?: string;
       callbackUrl?: string;
+      accountName?: string;
+      firstName?: string;
+      lastName?: string;
+      phoneNumber?: string;
     }): Promise<PersistentPaymentAccountResponse> {
       const payload: Record<string, unknown> = {
         referenceNumber: args.referenceNumber,
@@ -94,6 +116,10 @@ export function PersistentAccountOperations<TBase extends Constructor<PagaTransp
         payload.creditBankAccountNumber = args.creditBankAccountNumber;
       }
       if (args.callbackUrl !== undefined) payload.callbackUrl = args.callbackUrl;
+      if (args.accountName !== undefined) payload.accountName = args.accountName;
+      if (args.firstName !== undefined) payload.firstName = args.firstName;
+      if (args.lastName !== undefined) payload.lastName = args.lastName;
+      if (args.phoneNumber !== undefined) payload.phoneNumber = args.phoneNumber;
 
       return this.request<PersistentPaymentAccountResponse>(
         "POST",

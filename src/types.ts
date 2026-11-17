@@ -480,6 +480,10 @@ export interface PersistentPaymentAccountResponse {
   creditBankId?: string;
   creditBankAccountNumber?: string;
   callbackUrl?: string;
+  accountName?: string;
+  phoneNumber?: string;
+  firstName?: string;
+  lastName?: string;
   status?: string;
   balance?: number;
   currency?: string;
